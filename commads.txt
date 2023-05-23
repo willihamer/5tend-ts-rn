@@ -1,0 +1,4 @@
+yarn android
+expo start --android
+
+create component: rnfes

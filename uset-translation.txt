@@ -1,0 +1,46 @@
+Assuming that we want to display the text in multiple languages, and allow the user to switch the language of the app
+based on their device's primary language, I would recommend using both i18n-js and react-native-localization
+libraries for the FavoritesScreen.
+
+
+Here's an example implementation of using these libraries:
+
+import React from 'react';
+import {View, Text} from 'react-native';
+import {useTranslation} from 'react-i18next';
+import * as RNLocalize from 'react-native-localize';
+import i18n from 'i18n-js';
+
+const translations = {
+  en: {
+    favorites: 'Favorites',
+    noFavorites: 'No favorites yet.',
+  },
+  fr: {
+    favorites: 'Favoris',
+    noFavorites: 'Pas encore de favoris.',
+  },
+};
+
+i18n.translations = translations;
+i18n.locale = RNLocalize.locale;
+i18n.fallbacks = true;
+
+const FavoritesScreen = () => {
+  const {t} = useTranslation();
+
+  return (
+    <View>
+      <Text>{t('favorites')}</Text>
+      <Text>{t('noFavorites')}</Text>
+    </View>
+  );
+};
+
+export default FavoritesScreen;
+
+
+In this code, we define the translations using i18n-js and set the current locale based on the device's language
+using react-native-localize. We then use the useTranslation hook from i18n-js to get the appropriate translation
+based on the current locale, and display the translated text in the Text components.
+
